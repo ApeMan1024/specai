@@ -16,6 +16,7 @@
         html {
             width: 100%;
             height: 100%;
+            overflow: hidden;
         }
 
         b {
@@ -96,12 +97,24 @@
                 transform: scale(1);
             }
         }
+        p{
+            letter-spacing: 2em;
+            color:red;
+            font-size: 2em;
+            font-weight: bold;
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            margin-top:10px;
+        }
     </style>
 </head>
 
 <body>
     <div class="demo"></div>
+    <p>距离2020年春节还有：</p>
     <div class="box">
+        
         <b><span id="bay">0000</span><span>天</span></b>
         <b><span id="hour">00</span id=""><span>时</span></b>
         <b><span id="minu">00</span><span>分</span></b>
