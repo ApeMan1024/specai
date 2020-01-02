@@ -1,0 +1,144 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>2020年春节倒计时</title>
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/jquery.fireworks.js"></script>
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+        }
+
+        body,
+        html {
+            width: 100%;
+            height: 100%;
+        }
+
+        b {
+            font-size: 2em;
+            text-align: center;
+            display: table-cell;
+            color: red;
+        }
+
+        .box {
+            text-align: center;
+            display: table;
+            width: 80%;
+            position: relative;
+            margin: auto;
+            margin-top: -1em;
+            top: 50%;
+            z-index: 2;
+        }
+
+        #bay,
+        #hour,
+        #minu,
+        #second {
+            padding-right: 100px;
+        }
+
+        b>span:nth-of-type(2) {
+            animation: key 5s linear infinite;
+            transition: transform 0.05s;
+            display: inline-block;
+        }
+
+        @keyframes key {
+            0% {
+                color: black;
+                transform: translateY(10px) rotate(0deg);
+            }
+
+            25% {
+                color: magenta;
+                transform: translateY(-10px) rotate(0deg);
+            }
+
+            50% {
+                color: red;
+                transform: translateY(5px) rotate(0deg);
+            }
+
+            100% {
+                color: mediumvioletred;
+                transform: translateY(-5px) rotate(360deg);
+            }
+        }
+
+        .box1 {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: url("./images/1.gif") no-repeat;
+            background-size: 100% 100%;
+            position: relative;
+            z-index: 1;
+            margin: auto;
+            margin-top: -120px;
+            top: 50%;
+            transform: scale(0);
+            transition: transform 0.05s;
+            animation: key1 5s ease-in-out 1s infinite;
+        }
+
+        @keyframes key1 {
+            0% {
+                transform: scale(0);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="demo"></div>
+    <div class="box">
+        <b><span id="bay">0000</span><span>天</span></b>
+        <b><span id="hour">00</span id=""><span>时</span></b>
+        <b><span id="minu">00</span><span>分</span></b>
+        <b><span id="second">00</span><span>秒</span></b>
+    </div>
+    <div class="box1"></div>
+    <script>
+        $(function () {
+            var bay = $("#bay");
+            var hour = $("#hour");
+            var minu = $("#minu");
+            var second = $("#second");
+            timer();
+            setInterval(function () {
+                timer();
+            }, 1000);
+
+            $('.demo').fireworks({
+                sound: true, // 声音效果
+                opacity: 0.9,
+                width: '100%',
+                height: '100%'
+            });
+            function timer() {
+                var data_1 = new Date();
+                var data_2 = new Date(2020, 0, 24);
+                var bay1 = Math.floor((data_2 - data_1) / (1000 * 60 * 60 * 24));
+                var hour1 = Math.floor(((data_2 - data_1) / (1000 * 60 * 60 * 24) - bay1) * 24);
+                var minu1 = Math.floor((((data_2 - data_1) / (1000 * 60 * 60 * 24) - bay1) * 24 - hour1) * 60);
+                var second1 = Math.floor(((((data_2 - data_1) / (1000 * 60 * 60 * 24) - bay1) * 24 - hour1) * 60 - minu1) * 60);
+                bay.text(bay1);
+                hour.text(hour1);
+                minu.text(minu1);
+                second.text(second1);
+            }
+        })
+    </script>
+</body>
+
+</html>
